@@ -1,16 +1,16 @@
 import { Logo } from "@/once-ui/components";
 
 const person = {
-  firstName: "Selene",
-  lastName: "Yu",
+  firstName: "Gautam",
+  lastName: "Gupta",
   get name() {
     return `${this.firstName} ${this.lastName}`;
   },
-  role: "Design Engineer",
+  role: "ML Engineer",
   avatar: "/images/avatar.jpg",
-  email: "example@gmail.com",
-  location: "Asia/Jakarta", // Expecting the IANA time zone identifier, e.g., 'Europe/Vienna'
-  languages: ["English", "Bahasa"], // optional: Leave the array empty if you don't want to display languages
+  email: "guptagautam2905@gmail.com",
+  location: "Asia/India", // Expecting the IANA time zone identifier, e.g., 'Europe/Vienna'
+  languages: ["English", "Hindi"], // optional: Leave the array empty if you don't want to display languages
 };
 
 const newsletter = {
@@ -18,8 +18,7 @@ const newsletter = {
   title: <>Subscribe to {person.firstName}'s Newsletter</>,
   description: (
     <>
-      I occasionally write about design, technology, and share thoughts on the intersection of
-      creativity and engineering.
+      I occasionally repost important AI/ML related news. And post cool stuff about my ML journey and studies.
     </>
   ),
 };
@@ -30,17 +29,17 @@ const social = [
   {
     name: "GitHub",
     icon: "github",
-    link: "https://github.com/once-ui-system/nextjs-starter",
+    link: "https://github.com/gautam2905",
   },
   {
     name: "LinkedIn",
     icon: "linkedin",
-    link: "https://www.linkedin.com/company/once-ui/",
+    link: "https://www.linkedin.com/in/gautam-gupta-382720175",
   },
   {
     name: "X",
     icon: "x",
-    link: "",
+    link: "https://x.com/GautamG76742081",
   },
   {
     name: "Email",
@@ -55,16 +54,16 @@ const home = {
   label: "Home",
   title: `${person.name}'s Portfolio`,
   description: `Portfolio website showcasing my work as a ${person.role}`,
-  headline: <>Building bridges between design and code</>,
+  headline: <>Building revolutionizing AI ML technology</>,
   featured: {
     display: true,
-    title: <>Recent project: <strong className="ml-4">Once UI</strong></>,
+    title: <>Recent project: <strong className="ml-4">Context-Aware Code Reviewer</strong></>,
     href: "/work/building-once-ui-a-customizable-design-system",
   },
   subline: (
     <>
-      I'm Selene, a design engineer at <Logo icon={false} style={{ display: "inline-flex", top: "0.25em", marginLeft: "-0.25em" }}/>, where I craft intuitive
-      <br /> user experiences. After hours, I build my own projects.
+      I'm Gautam, a third year student at IIIT Delhi, where I am building my expertise
+      <br /> in Machine learning and Artificial Intelligence. After hours, I build my own projects.
     </>
   ),
 };
@@ -90,9 +89,9 @@ const about = {
     title: "Introduction",
     description: (
       <>
-        Selene is a Jakarta-based design engineer with a passion for transforming complex challenges
-        into simple, elegant design solutions. Her work spans digital interfaces, interactive
-        experiences, and the convergence of design and technology.
+         I’m a B.Tech student in Computer Science & Engineering at IIIT Delhi,
+         driven by a passion for cutting-edge AI research and high-performance computing.
+         I want to specialize in large language models and reinforcement learning, while also mastering CUDA to optimize and accelerate complex algorithms.
       </>
     ),
   },
@@ -101,45 +100,49 @@ const about = {
     title: "Work Experience",
     experiences: [
       {
-        company: "FLY",
-        timeframe: "2022 - Present",
-        role: "Senior Design Engineer",
+        company: "Undergraduate Research Assistant",
+        timeframe: "October 2024 - Present",
+        role: "Research Assistant",
         achievements: [
           <>
-            Redesigned the UI/UX for the FLY platform, resulting in a 20% increase in user
-            engagement and 30% faster load times.
+            Collaborated with PhD researchers to architect a novel LLM-driven patch-generation algorithm, mitigating
+            alignment-faking and repository inconsistencies.
           </>,
           <>
-            Spearheaded the integration of AI tools into design workflows, enabling designers to
-            iterate 50% faster.
+            Integrated Retrieval-Augmented Generation with knowledge-graph embeddings to boost contextual accuracy of
+            synthesized code patches.
           </>,
+          <>
+            Fine-tuned large language models to autonomously generate and rank GitHub issue patches by test-case pass rate
+            and relevance.
+          </>
         ],
         images: [
           // optional: leave the array empty if you don't want to display images
-          {
-            src: "/images/projects/project-01/cover-01.jpg",
-            alt: "Once UI Project",
-            width: 16,
-            height: 9,
-          },
+          // {
+          //   src: "/images/projects/project-01/cover-01.jpg",
+          //   alt: "Once UI Project",
+          //   width: 16,
+          //   height: 9,
+          // },
         ],
       },
-      {
-        company: "Creativ3",
-        timeframe: "2018 - 2022",
-        role: "Lead Designer",
-        achievements: [
-          <>
-            Developed a design system that unified the brand across multiple platforms, improving
-            design consistency by 40%.
-          </>,
-          <>
-            Led a cross-functional team to launch a new product line, contributing to a 15% increase
-            in overall company revenue.
-          </>,
-        ],
-        images: [],
-      },
+      // {
+      //   company: "Creativ3",
+      //   timeframe: "2018 - 2022",
+      //   role: "Lead Designer",
+      //   achievements: [
+      //     <>
+      //       Developed a design system that unified the brand across multiple platforms, improving
+      //       design consistency by 40%.
+      //     </>,
+      //     <>
+      //       Led a cross-functional team to launch a new product line, contributing to a 15% increase
+      //       in overall company revenue.
+      //     </>,
+      //   ],
+      //   images: [],
+      // },
     ],
   },
   studies: {
@@ -147,12 +150,12 @@ const about = {
     title: "Studies",
     institutions: [
       {
-        name: "University of Jakarta",
-        description: <>Studied software engineering.</>,
+        name: " Indraprastha Institute of Information Technology, Delhi ",
+        description: <>Studying Computer Science and engineering.</>,
       },
       {
-        name: "Build the Future",
-        description: <>Studied online marketing and personal branding.</>,
+        name: "DLDAV Model School",
+        description: <>Completed my 12th boards.</>,
       },
     ],
   },
@@ -161,37 +164,33 @@ const about = {
     title: "Technical skills",
     skills: [
       {
-        title: "Figma",
-        description: <>Able to prototype in Figma with Once UI with unnatural speed.</>,
-        // optional: leave the array empty if you don't want to display images
-        images: [
-          {
-            src: "/images/projects/project-01/cover-02.jpg",
-            alt: "Project image",
-            width: 16,
-            height: 9,
-          },
-          {
-            src: "/images/projects/project-01/cover-03.jpg",
-            alt: "Project image",
-            width: 16,
-            height: 9,
-          },
-        ],
+        "title": "Programming Languages",
+        "description": "Proficient in Python, Java, C, C++, CUDA, and MATLAB.",
+        "images": [
+          // Optional: Add relevant images here
+        ]
       },
       {
-        title: "Next.js",
-        description: <>Building next gen apps with Next.js + Once UI + Supabase.</>,
-        // optional: leave the array empty if you don't want to display images
-        images: [
-          {
-            src: "/images/projects/project-01/cover-04.jpg",
-            alt: "Project image",
-            width: 16,
-            height: 9,
-          },
-        ],
+        "title": "Machine Learning Frameworks",
+        "description": "Experienced with TensorFlow, PyTorch, Scikit-Learn, XGBoost, Hugging Face, Keras, and NLTK.",
+        "images": [
+          // Optional: Add relevant images here
+        ]
       },
+      {
+        "title": "Development Tools",
+        "description": "Skilled in using Git, VS Code, Jupyter Notebook, PyCharm, Docker, Taipy, and Google Cloud Platform (GCP).",
+        "images": [
+          // Optional: Add relevant images here
+        ]
+      },
+      {
+        "title": "Areas of Expertise", // Manually add a more specific description here
+        "description": "Strong foundation in Data Structures and Algorithms, Advanced Programming, Computer Organization, and Machine Learning. Experience in LLM-driven development, computer vision, and natural language processing.",
+        "images": [
+          // Optional: Add relevant images here
+        ]
+      }
     ],
   },
 };

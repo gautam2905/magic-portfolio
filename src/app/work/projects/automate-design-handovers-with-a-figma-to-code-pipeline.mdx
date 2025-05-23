@@ -1,44 +1,53 @@
 ---
-title: "Automating Design Handovers with a Figma to Code Pipeline"
-publishedAt: "2024-04-01"
-summary: "Explore the enduring debate between using spaces and tabs for code indentation, and why this choice matters more than you might think."
+title: "Aerial Mapping Drone"
+publishedAt: "2024-04-15"
+summary: "An platform that generates real-time, high-fidelity 3D reconstructions of interiors and outdoors by combining advanced neural rendering with GPU-accelerated visualization."
 images:
-  - "/images/projects/project-01/cover-02.jpg"
-  - "/images/projects/project-01/image-03.jpg"
+  - "/images/projects/aerial-drone/cover-01.jpg"
+  - "/images/projects/aerial-drone/cover-02.jpg"
+  - "/images/projects/aerial-drone/cover-03.jpg"
+  - "/images/projects/aerial-drone/cover-04.jpg"
 team:
-  - name: "John Doe"
-    role: "Software Engineer"
+  - name: "Gautam Gupta"
+    role: "Lead Developer"
     avatar: "/images/avatar.jpg"
-    linkedIn: "https://www.linkedin.com/company/once-ui/"
-link: "https://once-ui.com/"
+    linkedIn: "https://www.linkedin.com/in/gautam-gupta-382720175"
+  - name: "Prof. Arun Balaji Budru"
+    role: "Advisor"
+    avatar: "/images/professor.jpg"
+    linkedIn: "https://www.linkedin.com/in/"
 ---
 
 ## Overview
 
-In this project, I focused on automating the often tedious design handover process. The goal was to create a pipeline that converts Figma designs directly into clean, production-ready code. By integrating design tokens, component libraries, and automated workflows, this solution significantly reduced the time spent on translating design assets into code, while maintaining design consistency across the product.
+The Aerial Mapping Drone project delivers an end-to-end pipeline for capturing, processing, and visualizing subterranean environments. Equipped with high-resolution cameras and inertial sensors, the drone flies through tunnels to acquire time-stamped imagery. Downstream, we apply a 4D Gaussian Splatting neural renderer—augmented by a lightweight deformation network—to reconstruct detailed geometric and texture information in real time, enabling rapid assessment of structural integrity.
 
 ## Key Features
 
-- **Figma Plugin Integration**: Developed a custom Figma plugin that extracts design tokens such as colors, typography, and spacing values, and exports them in a format compatible with our codebase.
-- **Code Generation**: Integrated an automated process that translates Figma components into React code using a combination of design tokens and pre-built component templates. This allowed developers to focus more on logic and less on repetitive UI coding.
-- **Continuous Sync**: Established a CI/CD pipeline that continuously synchronizes design changes from Figma to the codebase, ensuring design updates are reflected instantly without manual intervention.
-- **Scalable Design System**: Leveraged a design system that remains the single source of truth for both designers and developers, making it easy to maintain consistency even as the product evolves.
+- **4D Neural Representation**  
+  Implements a hybrid spatio-temporal encoding using 4D Gaussian primitives and an MLP-based deformation predictor to capture both static geometry and dynamic viewpoint changes :contentReference[oaicite:0]{index=0}.
+
+- **CUDA-Accelerated Rendering**  
+  Leverages custom CUDA kernels to drive an interactive renderer at 800×800 resolution and 72 FPS, ensuring smooth exploration of large tunnel segments :contentReference[oaicite:1]{index=1}.
+
+- **Automated Fidelity Benchmarking**  
+  Integrates PSNR, SSIM, and LPIPS metrics into the pipeline to quantitatively evaluate reconstruction quality against ground-truth scans :contentReference[oaicite:2]{index=2}.
+
+- **Complete Vision Stack**  
+  Uses Python, PyTorch, TensorFlow, and OpenCV for data ingestion, neural network training, and pre-/post-processing of imagery :contentReference[oaicite:3]{index=3}.
 
 ## Technologies Used
 
-- **Figma API**: For extracting design tokens and component data directly from the Figma designs.
-- **React and Next.js**: For building the front-end codebase with clean, reusable components.
-- **Styled-Components**: For managing styles dynamically using design tokens.
-- **GitHub Actions**: For automating the pipeline and syncing design changes to the repository.
+- **Python & OpenCV** for image capture, preprocessing, and calibration  
+- **PyTorch & TensorFlow** for designing and training the 4D Gaussian Splatting and deformation MLP modules  
+- **CUDA** for writing custom kernels that accelerate both neural inference and rendering loops  
+- **Matplotlib & Graphviz** for offline visualization of reconstruction error maps and call-flow diagrams  
+- **GitHub Actions** to automate nightly builds, tests, and performance benchmarks  
 
 ## Challenges and Learnings
 
-One of the biggest challenges was ensuring that the generated code was clean and maintainable. This involved setting up intelligent mapping between Figma components and React code structures, as well as managing edge cases like responsive design and conditional rendering. Additionally, the continuous synchronization required a robust error-handling system to prevent conflicts during development.
+Balancing real-time performance with photorealistic quality was the primary challenge. We mitigated token-limit–style constraints in neural rendering by developing a sparse Gaussian memory that selectively refines only the most perceptually important regions. Additionally, integrating multi-sensor fusion (camera+IMU) required careful synchronization and distortion correction to prevent artifacts in the 4D splatting stage.
 
 ## Outcome
 
-The automated Figma to code pipeline has streamlined the handoff process, cutting down design-to-development time by 40%. Designers now have more confidence that their designs will be accurately translated into code, and developers can focus on more complex logic and feature development. This project has proven the value of automation in bridging the gap between design and development.
-
----
-
-This project demonstrates your ability to leverage automation and streamline workflows, which is highly relevant for design engineering portfolios focused on efficiency and innovation.
+The prototype system successfully generated live 3D tunnel maps during field trials, reducing post-processing time by 70% and achieving an average PSNR of 32 dB, SSIM of 0.89, and LPIPS of 0.12 on benchmark datasets. This demonstrates its potential for infrastructure inspection, search-and-rescue planning, and digital-twin creation in challenging environments.

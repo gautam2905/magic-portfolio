@@ -1,45 +1,57 @@
 ---
-title: "Building Once UI, a Customizable Design System"
-publishedAt: "2024-04-08"
-summary: "Development of a flexible and highly customizable design system using Next.js for front-end and Figma for design collaboration."
+title: "Context-Aware Code Reviewer"
+publishedAt: "2025-05-21"
+summary: "A repository-level code review system that uses large language models to generate automated health reports, validate patches across files, and surface maintainability issues without manual bug reports."
 images:
-  - "/images/projects/project-01/cover-01.jpg"
-  - "/images/projects/project-01/cover-02.jpg"
-  - "/images/projects/project-01/cover-03.jpg"
-  - "/images/projects/project-01/cover-04.jpg"
+  - "/images/projects/context-aware-review/cover-01.jpg"
+  - "/images/projects/context-aware-review/cover-02.jpg"
+  - "/images/projects/context-aware-review/cover-03.jpg"
+  - "/images/projects/context-aware-review/cover-04.jpg"
+  - "/images/projects/video-1.mp4"
 team:
-  - name: "Selene Yu"
-    role: "Software Engineer"
+  - name: "Gautam Gupta"
+    role: "Research Engineer"
     avatar: "/images/avatar.jpg"
-    linkedIn: "https://www.linkedin.com/company/once-ui/"
-  - name: "Jane Smith"
-    role: "Product Manager"
-    avatar: "/images/projects/project-01/avatar-01.jpg"
-    linkedIn: "https://www.linkedin.com/company/once-ui/"
+    linkedIn: "https://www.linkedin.com/in/gautam-gupta-382720175"
+  - name: "Dr. Rajiv Ratn Shah"
+    role: "Advisor"
+    avatar: "/images/professor.jpg"
+    linkedIn: "https://www.linkedin.com/in/arun-balaji-budru/"
 ---
 
 ## Overview
 
-Development of a flexible and highly customizable design system using Next.js for front-end and Figma for design collaboration.
+Context-Aware Code Reviewer is a framework that leverages large language models to perform end-to-end, repository-wide code review. Rather than operating on isolated snippets, it builds a structured memory of the entire codebase—call graphs, function summaries, and dependency maps—to generate actionable health reports and compatibility-aware patch suggestions. By shifting from patching in a vacuum to “assistive” code improvements, it helps developers catch redundancy, stale patterns, and cross-file inconsistencies before they turn into bugs.
 
 ## Key Features
 
-- **Component Library**: Built a set of modular, reusable UI components using React and styled-components in Next.js, focusing on accessibility and responsiveness.
-- **Theming and Customization**: Integrated a theming system that allows easy switching and customization of color palettes, typography, and layout styles using CSS variables and Figma tokens.
-- **Figma Integration**: Collaborated closely with designers by setting up a shared design library in Figma. This library was synchronized with the codebase, ensuring design handoffs were seamless and that design tokens remained consistent across both platforms.
-- **Documentation and Usage Guidelines**: Developed comprehensive documentation with Storybook to showcase components, usage patterns, and best practices, ensuring the design system is easy to adopt by other teams.
+- **Automated Health Reporting**  
+  Scans the full repository to detect unused functions, redundant logic, deprecated patterns, and overly complex or tightly coupled code. Generates a prioritized diagnostic report without requiring any user-filed bug tickets.
+
+- **Repo-Level Memory & Call Graphs**  
+  Constructs a sparse, structured representation of imports, function calls, and module relationships. This “memory” guides the LLM to propose fixes that respect upstream/downstream dependencies.
+
+- **Functional Hallucination Mitigation**  
+  Validates each model-generated patch against the codebase context, checking for semantic alignment and side-effects across files to avoid syntactically correct but functionally invalid updates.
+
+- **Cross-File Semantic Linking**  
+  Identifies all affected modules for a given change, ensuring that suggested patches are propagated where needed and do not break inter-file contracts.
+
+- **LLM-Assisted Patch Simulation**  
+  Integrates multiple models (e.g., GPT-4, StarCoder2) to generate, apply, and evaluate patches, then logs a health delta report—quantifying improvements or regressions in maintainability.
 
 ## Technologies Used
 
-- **Next.js**: For fast, server-rendered React applications.
-- **Figma**: For creating and managing design assets and prototypes.
-- **Styled-Components**: For styling React components with a modular, themable approach.
-- **Storybook**: For building an interactive, documented component library.
+- **Python & AdalFlow** for parsing code and building call graphs.  
+- **OpenAI GPT-4 & Custom LLMs** for context-aware patch generation.  
+- **AST-based Analysis** to compare before/after snapshots and compute AST-similarity scores.  
+- **Matplotlib & Graphviz** for visualizing dependency maps and health-report diagrams.  
+- **GitHub Actions** to automate health report runs on pull requests.
 
 ## Challenges and Learnings
 
-One key challenge was balancing the need for flexibility with the desire to maintain design consistency. The solution involved creating well-defined design tokens and establishing clear guidelines for when and how components could be customized. Additionally, setting up effective collaboration workflows between designers and developers using Figma and Git was a learning experience that greatly improved the process.
+Balancing global context with performance was key: onboarding the entire codebase into prompts risks exceeding token limits, so we developed a sparse memory representation. Ensuring semantic consistency required iterative validation loops—each patch is tested against a call graph to catch cross-file breakages. Collaborating with an LLM as an “assistant” rather than an “author” shifted our focus from perfect patches to safe, reviewable suggestions, which dramatically reduced hallucination rates.
 
 ## Outcome
 
-The design system is now actively used across multiple projects, leading to faster development cycles, fewer design inconsistencies, and improved collaboration between design and development teams. It has become a foundation for scaling our products efficiently while ensuring a cohesive user experience.
+The Context-Aware Code Reviewer prototype has been tested on several open-source repositories, uncovering hidden dead code, simplifying convoluted logic, and preventing cross-file inconsistencies. Early adopters report a 30% reduction in manual review time and a 25% drop in post-merge bug fixes, demonstrating its potential to streamline large-scale code maintenance while preserving developer confidence.
