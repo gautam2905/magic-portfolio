@@ -82,7 +82,8 @@ const about = {
   },
   calendar: {
     display: true,
-    link: "https://cal.com",
+    // link: "https://cal.com",
+    link: "https://calendar.app.google/2HT5efeWiR1BYq3r6",
   },
   intro: {
     display: true,
