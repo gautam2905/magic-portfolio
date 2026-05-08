@@ -59,6 +59,23 @@
   gap: 0.5rem;
 }
 
+.contactList li {
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
+  font-size: 1rem;
+}
+
+.contactIcon {
+  width: 1rem;
+  color: var(--crt-text-strong);
+}
+
+.contactLabel {
+  width: 5.5rem;
+  color: var(--crt-text-dim);
+}
+
 .contactList a {
   font-size: 1rem;
 }

@@ -176,9 +176,24 @@ export const commands: Record<string, CommandFn> = {
 
   work: (ctx) => commands.experience?.(ctx),
 
-  publications: ({ print }) => {
+  publications: ({ print, printHtml }) => {
     profile.publications.forEach((p) => {
-      print(`• ${p.title}`);
+      if (p.url) {
+        printHtml(
+          React.createElement(
+            "div",
+            null,
+            "• ",
+            React.createElement(
+              "a",
+              { href: p.url, target: "_blank", rel: "noreferrer noopener" },
+              p.title,
+            ),
+          ),
+        );
+      } else {
+        print(`• ${p.title}`);
+      }
       print(`  ${p.venue}`);
       print(`  ${p.desc}`);
       print("");
@@ -193,9 +208,9 @@ export const commands: Record<string, CommandFn> = {
         null,
         [
           ["✉", "email", `mailto:${profile.socials.email}`, profile.socials.email],
-          ["⌥", "github", profile.socials.github, profile.socials.github],
-          ["⌬", "linkedin", profile.socials.linkedin, profile.socials.linkedin],
-          ["✕", "twitter", profile.socials.twitter, profile.socials.twitter],
+          ["⌥", "github", profile.socials.github, "@gautam2905"],
+          ["⌬", "linkedin", profile.socials.linkedin, "gautam-gupta-382720175"],
+          ["✕", "twitter", profile.socials.twitter, "@GautamG76742081"],
         ].map(([icon, label, href, text], i) =>
           React.createElement(
             "div",

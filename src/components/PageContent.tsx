@@ -33,7 +33,15 @@ export function PageContent() {
         <ul className={styles.pubs}>
           {profile.publications.map((p) => (
             <li key={p.title} className={styles.pub}>
-              <div className={styles.pubTitle}>{p.title}</div>
+              <div className={styles.pubTitle}>
+                {p.url ? (
+                  <a href={p.url} target="_blank" rel="noreferrer noopener">
+                    {p.title} ↗
+                  </a>
+                ) : (
+                  p.title
+                )}
+              </div>
               <div className={styles.pubVenue}>{p.venue}</div>
               <p className={styles.pubDesc}>{p.desc}</p>
             </li>
@@ -52,16 +60,32 @@ export function PageContent() {
       <Section id="contact" title="contact" subtitle="say hi">
         <ul className={styles.contactList}>
           <li>
-            <a href={`mailto:${profile.socials.email}`}>✉ {profile.socials.email}</a>
+            <span className={styles.contactIcon}>✉</span>
+            <span className={styles.contactLabel}>email</span>
+            <a href={`mailto:${profile.socials.email}`}>
+              {profile.socials.email}
+            </a>
           </li>
           <li>
-            <a href={profile.socials.github} target="_blank" rel="noreferrer noopener">⌥ {profile.socials.github}</a>
+            <span className={styles.contactIcon}>⌥</span>
+            <span className={styles.contactLabel}>github</span>
+            <a href={profile.socials.github} target="_blank" rel="noreferrer noopener">
+              @gautam2905
+            </a>
           </li>
           <li>
-            <a href={profile.socials.linkedin} target="_blank" rel="noreferrer noopener">⌬ linkedin/in/gautam-gupta</a>
+            <span className={styles.contactIcon}>⌬</span>
+            <span className={styles.contactLabel}>linkedin</span>
+            <a href={profile.socials.linkedin} target="_blank" rel="noreferrer noopener">
+              gautam-gupta-382720175
+            </a>
           </li>
           <li>
-            <a href={profile.socials.twitter} target="_blank" rel="noreferrer noopener">✕ {profile.socials.twitter}</a>
+            <span className={styles.contactIcon}>✕</span>
+            <span className={styles.contactLabel}>twitter</span>
+            <a href={profile.socials.twitter} target="_blank" rel="noreferrer noopener">
+              @GautamG76742081
+            </a>
           </li>
         </ul>
       </Section>

@@ -36,6 +36,7 @@ export type Publication = {
   title: string;
   venue: string;
   desc: string;
+  url?: string;
 };
 
 export type StatChip = { label: string; value: string };
@@ -112,16 +113,19 @@ export const profile = {
       title: "MAC: Multi-Agent Constitution Learning",
       venue: "ICML 2026 (submission)",
       desc: "Multi-agent constitutional learning that automates rule discovery, outperforming recent prompt-optimization methods by 50%+ without parameter updates.",
+      url: "https://arxiv.org/abs/2604.13275",
     },
     {
       title: "Better and Worse with Scale: How Contextual Entrainment Diverges with Model Size",
       venue: "ACL 2026",
       desc: "Formalized scaling laws for contextual entrainment — bigger models resist misinformation but copy mechanically more.",
+      url: "https://arxiv.org/abs/2603.15968",
     },
     {
       title: "Sanitizing Medical Documents with Differential Privacy using LLMs",
       venue: "GenAI4Health @ NeurIPS",
       desc: "Constitutional classifiers tag private data via auditable natural-language rules — no costly fine-tuning required.",
+      url: "https://neurips.cc/virtual/2025/loc/san-diego/124873",
     },
   ] as Publication[],
 
