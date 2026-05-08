@@ -49,7 +49,7 @@ export const profile = {
   email: "guptagautam2905@gmail.com",
   phone: "+91 98737 74763",
   tagline:
-    "AI researcher who can't help but ship the demo.",
+    "AI research with an engineer's instinct — papers, prototypes, and production code.",
 
   bio: [
     "I'm a B.Tech CS student at IIIT-Delhi (class of 2027) doing AI research at the intersection of LLMs, privacy, and interpretability. Right now I'm working on constitutional classifiers — models that learn auditable natural-language rules instead of needing to be fine-tuned.",
