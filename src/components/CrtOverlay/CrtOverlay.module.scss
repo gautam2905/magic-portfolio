@@ -37,3 +37,8 @@
     opacity: 0.6;
   }
 }
+
+:global([data-comfort="1"]) .scanlines,
+:global([data-comfort="1"]) .vignette {
+  display: none;
+}

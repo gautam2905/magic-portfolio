@@ -53,10 +53,26 @@
   --crt-cursor: #b9dcff;
 }
 
-/* comfort mode: kills scanlines, flicker, glow */
+/* comfort mode: cleaner palette, no scanlines/flicker/glow,
+   no chunky pixel-display font on headings */
 [data-comfort="1"] {
   --scanline: transparent;
   --crt-glow: transparent;
+  --crt-bg: #11181a;
+  --crt-bg-deep: #0a1012;
+  --crt-bg-soft: #19232a;
+  --crt-text: #e0f3e6;
+  --crt-text-strong: #6affa0;
+  --crt-text-dim: #87a695;
+  --font-display: var(--font-plex-mono), "IBM Plex Mono", "Courier New", monospace;
+}
+
+[data-comfort="1"] h1,
+[data-comfort="1"] h2,
+[data-comfort="1"] h3,
+[data-comfort="1"] h4 {
+  font-weight: 500;
+  letter-spacing: -0.01em;
 }
 
 * {
@@ -71,7 +87,7 @@ body {
   color: var(--crt-text);
   font-family: var(--font-body);
   font-size: 18px;
-  line-height: 1.6;
+  line-height: 1.7;
   min-height: 100vh;
   overflow-x: hidden;
   text-shadow: 0 0 4px var(--crt-glow);
