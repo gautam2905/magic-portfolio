@@ -109,19 +109,19 @@ export const profile = {
   ] as Experience[],
 
   publications: [
-    {
-      title: "MAC: Multi-Agent Constitution Learning",
-      venue: "ICML 2026 (submission)",
-      desc: "Multi-agent constitutional learning that automates rule discovery, outperforming recent prompt-optimization methods by 50%+ without parameter updates.",
-      url: "https://arxiv.org/abs/2604.13275",
-    },
-    // Re-enable once accepted at a venue (currently under review elsewhere):
+    // Re-enable once accepted at a venue (currently a submission):
     // {
-    //   title: "Better and Worse with Scale: How Contextual Entrainment Diverges with Model Size",
-    //   venue: "ACL 2026",
-    //   desc: "Formalized scaling laws for contextual entrainment — bigger models resist misinformation but copy mechanically more.",
-    //   url: "https://arxiv.org/abs/2603.15968",
+    //   title: "MAC: Multi-Agent Constitution Learning",
+    //   venue: "ICML 2026 (submission)",
+    //   desc: "Multi-agent constitutional learning that automates rule discovery, outperforming recent prompt-optimization methods by 50%+ without parameter updates.",
+    //   url: "https://arxiv.org/abs/2604.13275",
     // },
+    {
+      title: "Better and Worse with Scale: How Contextual Entrainment Diverges with Model Size",
+      venue: "ACL 2026 Findings",
+      desc: "Formalized scaling laws for contextual entrainment — bigger models resist misinformation but copy mechanically more.",
+      url: "https://arxiv.org/abs/2603.15968",
+    },
     {
       title: "Sanitizing Medical Documents with Differential Privacy using LLMs",
       venue: "GenAI4Health @ NeurIPS",
