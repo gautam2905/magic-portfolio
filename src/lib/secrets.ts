@@ -26,7 +26,7 @@ export const SECRETS: SecretMeta[] = [
   { id: "theme-amber",   name: "Switched to amber",   hint: "??? — think 1980s monochrome monitors" },
   { id: "theme-blue",    name: "Switched to blue",    hint: "??? — another monochrome era" },
   { id: "coffee",        name: "Found the coffee",    hint: "??? — fuel of programmers" },
-  { id: "kernel-panic",  name: "Caused a kernel panic", hint: "??? — overwhelming the system with attention" },
+  { id: "kernel-panic",  name: "Caused a kernel panic", hint: "??? — the prompt doesn't like to be poked, three times fast" },
 ];
 
 const STORAGE_KEY = "gautam-os.secrets";

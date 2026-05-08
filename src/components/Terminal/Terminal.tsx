@@ -285,7 +285,9 @@ export function Terminal({
         <div className={styles.pills}>{hintPills}</div>
       )}
       <div className={styles.inputLine}>
-        <span className={styles.prompt}>{promptText}</span>
+        <span className={styles.prompt} data-panic-target>
+          {promptText}
+        </span>
         <span className={styles.inputWrap}>
           <span className={styles.echo}>{input}</span>
           <span className={styles.cursor} aria-hidden="true">▮</span>

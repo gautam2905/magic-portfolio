@@ -54,10 +54,6 @@ export function PortfolioApp({ initialCommand, scrollTo, children }: Props) {
 
   const matrixTimer = useRef<number | null>(null);
   const injectorRef = useRef<((cmd: string) => void) | null>(null);
-  const tripleClickRef = useRef<{ count: number; timer: number | null }>({
-    count: 0,
-    timer: null,
-  });
 
   const secretsApi = useSecrets();
 
@@ -149,20 +145,16 @@ export function PortfolioApp({ initialCommand, scrollTo, children }: Props) {
     }
   });
 
-  // triple-click anywhere triggers kernel panic
+  // triple-click on an opt-in target (data-panic-target) triggers kernel panic.
+  // We use the browser's native click count (event.detail) so casual clicks
+  // around the page can't accumulate into an accidental BSOD.
   useEffect(() => {
-    function onClick() {
-      const state = tripleClickRef.current;
-      state.count += 1;
-      if (state.timer !== null) window.clearTimeout(state.timer);
-      state.timer = window.setTimeout(() => {
-        state.count = 0;
-      }, 600);
-      if (state.count >= 3) {
-        state.count = 0;
-        if (state.timer !== null) window.clearTimeout(state.timer);
-        triggerKernelPanic();
-      }
+    function onClick(e: MouseEvent) {
+      if (e.detail !== 3) return;
+      const target = e.target as HTMLElement | null;
+      if (!target) return;
+      if (!target.closest("[data-panic-target]")) return;
+      triggerKernelPanic();
     }
     window.addEventListener("click", onClick);
     return () => window.removeEventListener("click", onClick);
