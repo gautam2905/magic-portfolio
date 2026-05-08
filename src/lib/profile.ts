@@ -49,7 +49,7 @@ export const profile = {
   email: "guptagautam2905@gmail.com",
   phone: "+91 98737 74763",
   tagline:
-    "Building constitutional classifiers, Gaussian splats, and other things that learn from rules.",
+    "Researching and building in AI — papers, prototypes, and everything in between.",
 
   bio: [
     "I'm a B.Tech CS student at IIIT-Delhi (class of 2027) doing AI research at the intersection of LLMs, privacy, and interpretability. Right now I'm working on constitutional classifiers — models that learn auditable natural-language rules instead of needing to be fine-tuned.",
