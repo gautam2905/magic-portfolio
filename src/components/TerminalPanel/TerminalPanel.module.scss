@@ -1,0 +1,127 @@
+.panel {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 320px;
+  display: flex;
+  flex-direction: column;
+  background: var(--crt-bg-deep);
+  border-top: 1px solid var(--crt-text-dim);
+  z-index: 40;
+  font-family: var(--font-body);
+  box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.4);
+}
+
+.panel.collapsed {
+  height: 48px !important;
+}
+
+.handle {
+  position: absolute;
+  top: -8px;
+  left: 0;
+  right: 0;
+  height: 16px;
+  cursor: ns-resize;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  user-select: none;
+  touch-action: none;
+}
+
+.grip {
+  color: var(--crt-text-dim);
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  background: var(--crt-bg-deep);
+  padding: 0 0.5rem;
+}
+
+.handle:hover .grip,
+.handle:focus-visible .grip {
+  color: var(--crt-text-strong);
+}
+
+.bar {
+  flex-shrink: 0;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1rem;
+  border-bottom: 1px solid var(--crt-text-dim);
+  background: var(--crt-bg-deep);
+  font-size: 0.85rem;
+  color: var(--crt-text-dim);
+}
+
+.collapsed .bar {
+  height: 48px;
+  border-bottom: none;
+}
+
+.barTitle {
+  color: var(--crt-text-dim);
+}
+
+.barRight {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.barBtn {
+  border: none;
+  background: transparent;
+  font-family: inherit;
+  font-size: inherit;
+  color: var(--crt-text);
+  padding: 0.15rem 0.5rem;
+  cursor: pointer;
+  text-shadow: inherit;
+}
+
+.barBtn:hover,
+.barBtn:focus-visible {
+  color: var(--crt-text-strong);
+  outline: none;
+}
+
+.terminal {
+  flex: 1;
+  min-height: 0;
+}
+
+.pillsLabel {
+  color: var(--crt-text-dim);
+  margin-right: 0.25rem;
+}
+
+.pill {
+  border: 1px solid var(--crt-text-dim);
+  background: transparent;
+  font-family: inherit;
+  font-size: 0.85rem;
+  padding: 0.15rem 0.5rem;
+  cursor: pointer;
+  color: var(--crt-text);
+  text-shadow: inherit;
+}
+
+.pill:hover,
+.pill:focus-visible {
+  color: var(--crt-text-strong);
+  border-color: var(--crt-text-strong);
+  outline: none;
+}
+
+@media (max-width: 768px) {
+  .panel {
+    height: 50vh;
+  }
+  .handle {
+    display: none;
+  }
+}

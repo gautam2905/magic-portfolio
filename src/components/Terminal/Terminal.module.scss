@@ -1,0 +1,102 @@
+.terminal {
+  width: 100%;
+  height: 100%;
+  padding: 1rem 1.5rem;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  cursor: text;
+  overflow-y: auto;
+  color: var(--crt-text);
+}
+
+.output {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+
+.line {
+  white-space: pre-wrap;
+  word-break: break-word;
+  min-height: 1.4em;
+}
+
+.ascii {
+  white-space: pre;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  line-height: 1.05;
+  color: var(--crt-text-strong);
+  margin: 0.25rem 0;
+  overflow-x: auto;
+}
+
+.error {
+  color: var(--crt-red);
+}
+
+.pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin: 0.5rem 0;
+}
+
+.inputLine {
+  display: flex;
+  align-items: center;
+  margin-top: 0.5rem;
+  position: relative;
+}
+
+.prompt {
+  color: var(--crt-text-strong);
+  white-space: pre;
+  user-select: none;
+}
+
+.inputWrap {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  flex: 1;
+  min-height: 1.4em;
+}
+
+.echo {
+  white-space: pre;
+}
+
+.cursor {
+  display: inline-block;
+  margin-left: 1px;
+  animation: blink 1s steps(2, end) infinite;
+  color: var(--crt-cursor);
+}
+
+.hiddenInput {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+  left: 0;
+  top: 0;
+  width: 1px;
+  height: 1px;
+}
+
+@media (max-width: 768px) {
+  .terminal {
+    padding: 0.75rem 1rem;
+    font-size: 0.85rem;
+  }
+  .ascii {
+    font-size: 0.65rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cursor {
+    animation: none;
+  }
+}

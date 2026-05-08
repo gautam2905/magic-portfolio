@@ -1,0 +1,110 @@
+.bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 1.5rem;
+  background: var(--crt-bg-deep);
+  border-bottom: 1px solid var(--crt-text-dim);
+  z-index: 50;
+  font-family: var(--font-body);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--crt-text-strong);
+  text-decoration: none;
+  border: none;
+}
+
+.logoMark {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  letter-spacing: 0.05em;
+}
+
+.path {
+  color: var(--crt-text-dim);
+  font-size: 0.9rem;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.navLink {
+  color: var(--crt-text);
+  text-decoration: none;
+  padding: 0.25rem 0.5rem;
+  border: none;
+  white-space: nowrap;
+}
+
+.navLink:hover,
+.navLink:focus-visible {
+  color: var(--crt-text-strong);
+  outline: none;
+  border: none;
+}
+
+.toggle {
+  border: none;
+  background: transparent;
+  font-family: inherit;
+  font-size: inherit;
+  color: var(--crt-text-dim);
+  padding: 0.25rem 0.5rem;
+  cursor: pointer;
+  text-shadow: inherit;
+}
+
+.toggle:hover,
+.toggle:focus-visible {
+  color: var(--crt-text-strong);
+  outline: none;
+}
+
+.desktopOnly {
+  display: inline;
+}
+
+@media (max-width: 768px) {
+  .desktopOnly {
+    display: none !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .bar {
+    padding: 0 0.5rem;
+    height: 52px;
+  }
+  .path {
+    display: none;
+  }
+  .nav {
+    gap: 0;
+    font-size: 0.72rem;
+    flex-wrap: nowrap;
+  }
+  .navLink,
+  .toggle {
+    padding: 0.25rem 0.25rem;
+    white-space: nowrap;
+  }
+  .toggle {
+    display: none;
+  }
+  .logoMark {
+    font-size: 1.2rem;
+  }
+}

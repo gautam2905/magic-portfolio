@@ -1,0 +1,248 @@
+/* ===========================================================
+   GAUTAM-OS: Retro CRT terminal portfolio
+   =========================================================== */
+
+:root {
+  --crt-bg: #0d1410;
+  --crt-bg-deep: #060a08;
+  --crt-bg-soft: #131c17;
+
+  --crt-green: #5eff8a;
+  --crt-green-dim: #2fb558;
+  --crt-green-glow: rgba(94, 255, 138, 0.45);
+
+  --crt-amber: #ffc34d;
+  --crt-amber-dim: #b07700;
+  --crt-amber-glow: rgba(255, 195, 77, 0.45);
+
+  --crt-blue: #7dc5ff;
+  --crt-blue-dim: #3a78b3;
+  --crt-blue-glow: rgba(125, 197, 255, 0.45);
+
+  --crt-red: #ff7a7a;
+
+  /* derived: body text softer than highlight */
+  --crt-text: #c8ffd6;
+  --crt-text-strong: var(--crt-green);
+  --crt-text-dim: #6da27d;
+  --crt-glow: var(--crt-green-glow);
+  --crt-cursor: #aaffaa;
+  --crt-todo: #ffd57a;
+
+  --scanline: rgba(0, 0, 0, 0.10);
+
+  --font-display: var(--font-vt323), "VT323", "Courier New", monospace;
+  --font-body: var(--font-plex-mono), "IBM Plex Mono", "Courier New", monospace;
+
+  --max-page: 1080px;
+}
+
+[data-theme="amber"] {
+  --crt-text-strong: var(--crt-amber);
+  --crt-text: #ffe2a3;
+  --crt-text-dim: #b08a3d;
+  --crt-glow: var(--crt-amber-glow);
+  --crt-cursor: #ffd57a;
+}
+
+[data-theme="blue"] {
+  --crt-text-strong: var(--crt-blue);
+  --crt-text: #d6ecff;
+  --crt-text-dim: #6d92b2;
+  --crt-glow: var(--crt-blue-glow);
+  --crt-cursor: #b9dcff;
+}
+
+/* comfort mode: kills scanlines, flicker, glow */
+[data-comfort="1"] {
+  --scanline: transparent;
+  --crt-glow: transparent;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--crt-bg);
+  color: var(--crt-text);
+  font-family: var(--font-body);
+  font-size: 18px;
+  line-height: 1.6;
+  min-height: 100vh;
+  overflow-x: hidden;
+  text-shadow: 0 0 4px var(--crt-glow);
+}
+
+body {
+  background:
+    radial-gradient(
+      ellipse at center,
+      var(--crt-bg) 0%,
+      var(--crt-bg-deep) 100%
+    );
+  animation: flicker 12s infinite;
+}
+
+[data-comfort="1"] body {
+  animation: none;
+}
+
+@keyframes flicker {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  4% {
+    opacity: 0.99;
+  }
+  47% {
+    opacity: 0.995;
+  }
+  51% {
+    opacity: 0.985;
+  }
+  53% {
+    opacity: 1;
+  }
+}
+
+@keyframes blink {
+  0%,
+  49% {
+    opacity: 1;
+  }
+  50%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes glitch {
+  0%,
+  100% {
+    text-shadow: 0 0 4px var(--crt-glow);
+  }
+  20% {
+    text-shadow:
+      2px 0 0 var(--crt-red),
+      -2px 0 0 var(--crt-blue),
+      0 0 4px var(--crt-glow);
+  }
+  40% {
+    text-shadow:
+      -2px 0 0 var(--crt-red),
+      2px 0 0 var(--crt-blue),
+      0 0 4px var(--crt-glow);
+  }
+  60% {
+    text-shadow: 0 0 4px var(--crt-glow);
+  }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+h1, h2, h3, h4 {
+  color: var(--crt-text-strong);
+  font-family: var(--font-display);
+  font-weight: 400;
+  margin: 0;
+  letter-spacing: 0.02em;
+}
+
+p {
+  margin: 0 0 1em;
+}
+
+a {
+  color: var(--crt-text-strong);
+  text-decoration: none;
+  transition: text-shadow 80ms;
+  border-bottom: 1px dashed transparent;
+}
+
+a:hover,
+a:focus-visible {
+  border-bottom-color: var(--crt-text-strong);
+  outline: none;
+}
+
+[data-comfort="0"] a:hover,
+[data-comfort="0"] a:focus-visible {
+  animation: glitch 240ms steps(2, end);
+}
+
+button {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  background: transparent;
+  border: 1px solid var(--crt-text-dim);
+  cursor: pointer;
+  text-shadow: inherit;
+  padding: 0.25rem 0.6rem;
+  letter-spacing: 0.02em;
+}
+
+button:hover,
+button:focus-visible {
+  border-color: var(--crt-text-strong);
+  color: var(--crt-text-strong);
+  outline: none;
+}
+
+pre,
+code {
+  font-family: var(--font-body);
+  margin: 0;
+}
+
+::selection {
+  background: var(--crt-text-strong);
+  color: var(--crt-bg);
+  text-shadow: none;
+}
+
+/* TODO markers in profile data render in dimmed amber */
+.todo {
+  color: var(--crt-todo);
+  opacity: 0.85;
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  padding: 0.5rem 1rem;
+  background: var(--crt-bg);
+  border: 1px solid var(--crt-text);
+}
+
+.skip-link:focus {
+  left: 0.5rem;
+  top: 0.5rem;
+  z-index: 1000;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body {
+    animation: none;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+  a:hover,
+  a:focus-visible {
+    animation: none;
+  }
+}

@@ -1,0 +1,32 @@
+.boot {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 2rem 3rem;
+  background: var(--crt-bg);
+  z-index: 50;
+  font-family: var(--font-body);
+  font-size: 1.1rem;
+}
+
+.lines {
+  white-space: pre;
+  line-height: 1.5;
+}
+
+.skip {
+  margin-top: 2rem;
+  color: var(--crt-text-dim);
+  font-size: 0.9rem;
+  text-shadow: none;
+}
+
+@media (max-width: 768px) {
+  .boot {
+    padding: 1rem 1rem;
+    font-size: 0.9rem;
+  }
+}

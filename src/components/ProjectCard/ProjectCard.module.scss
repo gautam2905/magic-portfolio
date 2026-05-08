@@ -1,0 +1,126 @@
+.card {
+  border: 1px solid var(--crt-text-dim);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  background: rgba(94, 255, 138, 0.02);
+  transition: border-color 120ms;
+}
+
+.card:hover,
+.card:focus-within {
+  border-color: var(--crt-text-strong);
+}
+
+.thumbLink {
+  border: none;
+}
+
+.thumb {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background: var(--crt-bg-deep);
+  border: 1px solid var(--crt-text-dim);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.25rem;
+}
+
+.img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(1) sepia(1) hue-rotate(80deg) saturate(2.2) brightness(0.85) contrast(1.1);
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+}
+
+[data-comfort="1"] .img {
+  filter: none;
+}
+
+.thumbFallback {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 0;
+  color: var(--crt-text-dim);
+}
+
+.thumbAscii {
+  font-size: 0.65rem;
+  line-height: 1;
+  white-space: pre;
+  margin: 0;
+  text-align: center;
+}
+
+.header {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.id {
+  font-family: var(--font-display);
+  color: var(--crt-text-dim);
+  font-size: 1rem;
+}
+
+.name {
+  font-size: 1.4rem;
+  margin: 0;
+  color: var(--crt-text-strong);
+  font-family: var(--font-display);
+}
+
+.tagline {
+  margin: 0;
+  color: var(--crt-text);
+  font-size: 0.95rem;
+  font-style: italic;
+}
+
+.desc {
+  margin: 0;
+  color: var(--crt-text);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.stack {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.35rem;
+}
+
+.tag {
+  font-size: 0.78rem;
+  color: var(--crt-text-dim);
+  border: 1px solid var(--crt-text-dim);
+  padding: 0.1rem 0.4rem;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: baseline;
+  margin-top: auto;
+  font-size: 0.9rem;
+}
+
+.period {
+  margin-left: auto;
+  color: var(--crt-text-dim);
+  font-size: 0.8rem;
+}

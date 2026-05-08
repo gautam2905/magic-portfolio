@@ -1,0 +1,73 @@
+.page {
+  max-width: var(--max-page);
+  margin: 0 auto;
+  padding: 72px 1.5rem 360px; /* top: under topbar; bottom: above terminal panel */
+}
+
+.bio {
+  max-width: 65ch;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--crt-text);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.25rem;
+}
+
+.pubs {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.pub {
+  border-left: 2px solid var(--crt-text-dim);
+  padding: 0.25rem 0 0.25rem 1rem;
+}
+
+.pubTitle {
+  color: var(--crt-text-strong);
+  font-size: 1.05rem;
+}
+
+.pubVenue {
+  color: var(--crt-text-dim);
+  font-size: 0.85rem;
+  margin-bottom: 0.35rem;
+}
+
+.pubDesc {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--crt-text);
+  max-width: 70ch;
+}
+
+.contactList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.contactList a {
+  font-size: 1rem;
+}
+
+@media (max-width: 768px) {
+  .page {
+    padding: 60px 1rem 80px; /* mobile: terminal collapses to bar */
+  }
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
