@@ -48,55 +48,47 @@
   align-items: center;
   margin-top: 0.5rem;
   position: relative;
+  gap: 0.1rem;
 }
 
 .prompt {
   color: var(--crt-text-strong);
   white-space: pre;
   user-select: none;
+  flex-shrink: 0;
 }
 
-.inputWrap {
-  position: relative;
-  display: inline-flex;
-  align-items: center;
+.input {
   flex: 1;
-  min-height: 1.4em;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--crt-text);
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  padding: 0;
+  margin: 0;
+  text-shadow: inherit;
+  caret-color: var(--crt-cursor);
+  min-width: 0;
 }
 
-.echo {
-  white-space: pre;
-}
-
-.cursor {
-  display: inline-block;
-  margin-left: 1px;
-  animation: blink 1s steps(2, end) infinite;
-  color: var(--crt-cursor);
-}
-
-.hiddenInput {
-  position: absolute;
-  opacity: 0;
-  pointer-events: none;
-  left: 0;
-  top: 0;
-  width: 1px;
-  height: 1px;
+.input::selection {
+  background: var(--crt-text-strong);
+  color: var(--crt-bg);
+  text-shadow: none;
 }
 
 @media (max-width: 768px) {
   .terminal {
     padding: 0.75rem 1rem;
-    font-size: 0.85rem;
+    font-size: 0.95rem; /* slightly bigger so soft keyboard doesn't auto-zoom */
   }
   .ascii {
     font-size: 0.65rem;
   }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .cursor {
-    animation: none;
+  .input {
+    font-size: 16px; /* iOS won't zoom the page on focus when input >= 16px */
   }
 }

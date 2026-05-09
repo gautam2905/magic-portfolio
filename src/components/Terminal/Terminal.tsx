@@ -288,14 +288,10 @@ export function Terminal({
         <span className={styles.prompt} data-panic-target>
           {promptText}
         </span>
-        <span className={styles.inputWrap}>
-          <span className={styles.echo}>{input}</span>
-          <span className={styles.cursor} aria-hidden="true">▮</span>
-        </span>
         <input
           id="terminal-input"
           ref={inputRef}
-          className={styles.hiddenInput}
+          className={styles.input}
           value={input}
           onChange={(e) => setInput(e.target.value)}
           onKeyDown={onKey}
@@ -303,6 +299,7 @@ export function Terminal({
           autoCorrect="off"
           autoCapitalize="off"
           spellCheck={false}
+          inputMode="text"
           aria-label="terminal input"
         />
       </div>

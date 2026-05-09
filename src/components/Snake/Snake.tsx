@@ -18,6 +18,25 @@ const DIR_VECS: Record<Dir, Vec> = {
   right: { x: 1, y: 0 },
 };
 
+// Each grid cell renders as exactly 2 characters (no padding spacing).
+// That lets the head occupy a single cell with a directional 2-char marker.
+const HEAD: Record<Dir, string> = {
+  left: "<@",
+  right: "@>",
+  up: "/^",
+  down: "v\\",
+};
+const BODY = "[]";
+const TAIL = "()";
+const FOOD = "{}";
+const EMPTY = "  ";
+
+const INITIAL_SNAKE: Vec[] = [
+  { x: 10, y: 10 },
+  { x: 9, y: 10 },
+  { x: 8, y: 10 },
+];
+
 function randCell(occupied: Vec[]): Vec {
   while (true) {
     const c = { x: Math.floor(Math.random() * COLS), y: Math.floor(Math.random() * ROWS) };
@@ -26,11 +45,7 @@ function randCell(occupied: Vec[]): Vec {
 }
 
 export default function Snake({ onExit }: { onExit: (score: number) => void }) {
-  const [snake, setSnake] = useState<Vec[]>([
-    { x: 10, y: 10 },
-    { x: 9, y: 10 },
-    { x: 8, y: 10 },
-  ]);
+  const [snake, setSnake] = useState<Vec[]>(INITIAL_SNAKE);
   const [food, setFood] = useState<Vec>({ x: 14, y: 10 });
   const [dir, setDir] = useState<Dir>("right");
   const dirRef = useRef<Dir>("right");
@@ -44,6 +59,20 @@ export default function Snake({ onExit }: { onExit: (score: number) => void }) {
     const stored = parseInt(localStorage.getItem(HIGH_SCORE_KEY) || "0", 10);
     setHighScore(isNaN(stored) ? 0 : stored);
   }, []);
+
+  const reset = useCallback(() => {
+    if (score > 0 && score > highScore) {
+      localStorage.setItem(HIGH_SCORE_KEY, String(score));
+      setHighScore(score);
+    }
+    setSnake(INITIAL_SNAKE);
+    setFood({ x: 14, y: 10 });
+    setDir("right");
+    dirRef.current = "right";
+    queuedDirRef.current = null;
+    setScore(0);
+    setDead(false);
+  }, [score, highScore]);
 
   const exit = useCallback(() => {
     if (score > highScore) {
@@ -60,6 +89,12 @@ export default function Snake({ onExit }: { onExit: (score: number) => void }) {
         exit();
         return;
       }
+      if (k === "r" && dead) {
+        e.preventDefault();
+        reset();
+        return;
+      }
+      if (dead) return;
       const map: Record<string, Dir> = {
         arrowup: "up",
         arrowdown: "down",
@@ -86,7 +121,7 @@ export default function Snake({ onExit }: { onExit: (score: number) => void }) {
     }
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [exit]);
+  }, [exit, reset, dead]);
 
   useEffect(() => {
     if (dead) return;
@@ -136,22 +171,27 @@ export default function Snake({ onExit }: { onExit: (score: number) => void }) {
     };
   }, [dead, food]);
 
-  // build grid
+  // Build the grid as 2-char-per-cell strings.
   const grid: string[][] = Array.from({ length: ROWS }, () =>
-    Array.from({ length: COLS }, () => " "),
+    Array.from({ length: COLS }, () => EMPTY),
   );
   snake.forEach((s, i) => {
-    if (s.y >= 0 && s.y < ROWS && s.x >= 0 && s.x < COLS) {
-      grid[s.y][s.x] = i === 0 ? "@" : "#";
+    if (s.y < 0 || s.y >= ROWS || s.x < 0 || s.x >= COLS) return;
+    if (i === 0) {
+      grid[s.y][s.x] = HEAD[dir];
+    } else if (i === snake.length - 1) {
+      grid[s.y][s.x] = TAIL;
+    } else {
+      grid[s.y][s.x] = BODY;
     }
   });
   if (food.y >= 0 && food.y < ROWS && food.x >= 0 && food.x < COLS) {
-    grid[food.y][food.x] = "*";
+    grid[food.y][food.x] = FOOD;
   }
 
   const top = "╔" + "═".repeat(COLS * 2) + "╗";
   const bot = "╚" + "═".repeat(COLS * 2) + "╝";
-  const rows = grid.map((row) => "║" + row.map((c) => c + " ").join("") + "║");
+  const rows = grid.map((row) => "║" + row.join("") + "║");
   const board = [top, ...rows, bot].join("\n");
 
   return (
@@ -160,12 +200,20 @@ export default function Snake({ onExit }: { onExit: (score: number) => void }) {
         <span>SNAKE</span>
         <span>score: {score}</span>
         <span>high: {Math.max(score, highScore)}</span>
-        <span className={styles.help}>WASD/arrows · q/ESC to quit</span>
+        <span className={styles.help}>WASD/arrows · q/ESC to quit{dead ? " · r to restart" : ""}</span>
       </div>
       <pre className={`${styles.board} ${dead ? styles.dead : ""}`}>{board}</pre>
       {dead && (
-        <div className={styles.gameOver}>
-          GAME OVER — score {score}. press q or ESC to return.
+        <div className={styles.gameOverBlock}>
+          <div className={styles.gameOver}>GAME OVER — score {score}</div>
+          <div className={styles.actions}>
+            <button type="button" className={styles.btn} onClick={reset}>
+              [ r ] restart
+            </button>
+            <button type="button" className={styles.btn} onClick={exit}>
+              [ q ] quit
+            </button>
+          </div>
         </div>
       )}
     </div>
