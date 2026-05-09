@@ -14,7 +14,8 @@ const COMMAND_DESCRIPTIONS: Record<string, string> = {
   help: "list all commands",
   whoami: "who you're talking to",
   about: "read about Gautam",
-  ls: "list things — try `ls projects`",
+  ls: "list things — try `ls projects` or `ls demos`",
+  demos: "live products you can open right now",
   cd: "change directory (cosmetic)",
   cat: "print a file or project — `cat about.txt`, `cat 001`",
   open: "open a project by id",
@@ -92,7 +93,18 @@ export const commands: Record<string, CommandFn> = {
 
   ls: ({ args, print }) => {
     const target = args[0];
-    if (!target || target === "projects") {
+    if (!target) {
+      print("demos/    projects/    experience/");
+      return;
+    }
+    if (target === "demos") {
+      print("demos/");
+      profile.demos.forEach((d) => {
+        print(`  [${d.id.padEnd(3)}]  ${d.name.padEnd(22)} ${d.tagline}`);
+      });
+      return;
+    }
+    if (target === "projects") {
       print("projects/");
       profile.projects.forEach((p) => {
         const star = p.featured ? " ★" : "  ";
@@ -107,6 +119,24 @@ export const commands: Record<string, CommandFn> = {
       return;
     }
     print(`ls: cannot access '${target}': No such file or directory`);
+  },
+
+  demos: ({ print, printHtml }) => {
+    print("live demos:");
+    profile.demos.forEach((d) => {
+      printHtml(
+        React.createElement(
+          "div",
+          { style: { paddingLeft: "1ch" } },
+          `[${d.id}] ${d.name} — ${d.tagline}  `,
+          React.createElement(
+            "a",
+            { href: d.url, target: "_blank", rel: "noreferrer noopener" },
+            "→ open",
+          ),
+        ),
+      );
+    });
   },
 
   cd: ({ args, setCwd, print }) => {
@@ -126,14 +156,36 @@ export const commands: Record<string, CommandFn> = {
     print(`cd: ${target}: No such file or directory`);
   },
 
-  cat: ({ args, print, printAscii }) => {
+  cat: ({ args, print, printAscii, printHtml }) => {
     const target = args.join(" ");
     if (!target) {
-      print("usage: cat <file|project-id|project-slug>");
+      print("usage: cat <file|project-id|project-slug|demo-id>");
       return;
     }
     if (target === "about.txt" || target === "about") {
       print(profile.bio);
+      return;
+    }
+    const demo = profile.demos.find(
+      (d) => d.id.toLowerCase() === target.toLowerCase() || d.slug === target,
+    );
+    if (demo) {
+      printAscii(
+        projectCard(
+          demo.id,
+          demo.name,
+          demo.desc,
+          demo.stack.join(" · "),
+          demo.url,
+        ),
+      );
+      printHtml(
+        React.createElement(
+          "a",
+          { href: demo.url, target: "_blank", rel: "noreferrer noopener" },
+          `→ open ${demo.url}`,
+        ),
+      );
       return;
     }
     const project = projectByIdOrSlug(target);
@@ -472,9 +524,11 @@ export function tabComplete(input: string): string | null {
     candidates = profile.projects
       .map((p) => p.id)
       .concat(profile.projects.map((p) => p.slug))
+      .concat(profile.demos.map((d) => d.id))
+      .concat(profile.demos.map((d) => d.slug))
       .concat(["about.txt"]);
   } else if (cmd === "ls" || cmd === "cd")
-    candidates = ["projects", "experience"];
+    candidates = ["demos", "projects", "experience"];
 
   const matches = candidates.filter((c) => c.startsWith(argPrefix));
   if (matches.length !== 1) return null;

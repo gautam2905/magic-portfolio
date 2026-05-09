@@ -4,8 +4,9 @@ import Link from "next/link";
 import styles from "./TopBar.module.scss";
 
 const NAV = [
+  { label: "demos", cmd: "demos", anchor: "#demos", showOn: "all" },
   { label: "about", cmd: "cat about.txt", anchor: "#about", showOn: "all" },
-  { label: "work", cmd: "ls projects", anchor: "#projects", showOn: "all" },
+  { label: "work", cmd: "ls projects", anchor: "#projects", showOn: "desktop" },
   { label: "experience", cmd: "experience", anchor: "#experience", showOn: "desktop" },
   { label: "contact", cmd: "contact", anchor: "#contact", showOn: "all" },
 ] as const;

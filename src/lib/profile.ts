@@ -15,6 +15,18 @@ export type Project = {
   featured?: boolean;
 };
 
+export type Demo = {
+  id: string;
+  slug: string;
+  name: string;
+  tagline: string;
+  desc: string;
+  url: string;
+  stack: string[];
+  image: string;
+  paper?: string;
+};
+
 export type Experience = {
   role: string;
   company: string;
@@ -140,6 +152,43 @@ export const profile = {
         "Coursework: Reinforcement Learning, Statistical & Bayesian ML, DSA, Computer Organization, Linear Algebra, Probability & Statistics, Multivariate Calculus, Quantum Computing.",
     },
   ] as Education[],
+
+  demos: [
+    {
+      id: "MAC",
+      slug: "mac",
+      name: "MAC",
+      tagline: "The explainable, auditable prompt optimizer.",
+      desc:
+        "Python library + docs for Multi-Agent Constitution Learning — bring your own metric, model, and dataset; MAC learns a constitution (set of rules) instead of fine-tuning. Ships as `mac-prompt` on PyPI.",
+      url: "https://www.mac-prompt.com/",
+      stack: ["Python", "PyTorch", "LLMs"],
+      image: "/projects/mac-prompt.png",
+      paper: "https://arxiv.org/abs/2604.13275",
+    },
+    {
+      id: "DOC",
+      slug: "document-privacy",
+      name: "Document Privacy",
+      tagline: "DP-Fusion + MAC, applied to any document.",
+      desc:
+        "Upload a document, see PII redacted live, and get a paraphrased privacy-safe version back. Auditable rules under the hood, no fine-tuning required.",
+      url: "https://www.documentprivacy.com/",
+      stack: ["Next.js", "Python", "Differential Privacy"],
+      image: "/projects/document-privacy.png",
+    },
+    {
+      id: "ALP",
+      slug: "alpine-api",
+      name: "Alpine Privacy API",
+      tagline: "Production PII redaction via learnt constitutional rules.",
+      desc:
+        "Pre-learnt rules for common domains, ready to call. Grab an API key from the gateway, define your own constitution, and the API extracts the rules for you.",
+      url: "https://console.documentprivacy.com/",
+      stack: ["Python", "FastAPI", "LLMs"],
+      image: "/projects/alpine-console.png",
+    },
+  ] as Demo[],
 
   projects: [
     {

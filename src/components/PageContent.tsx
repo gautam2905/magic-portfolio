@@ -2,6 +2,7 @@ import { profile } from "@/lib/profile";
 import { Hero } from "@/components/Hero/Hero";
 import { Section } from "@/components/Section/Section";
 import { ProjectCard } from "@/components/ProjectCard/ProjectCard";
+import { DemoCard } from "@/components/DemoCard/DemoCard";
 import { Timeline } from "@/components/Timeline/Timeline";
 import { SkillChips } from "@/components/SkillChips/SkillChips";
 import styles from "./PageContent.module.scss";
@@ -17,7 +18,15 @@ export function PageContent() {
         ))}
       </Section>
 
-      <Section id="projects" title="featured projects" subtitle="ls projects/">
+      <Section id="demos" title="live demos" subtitle="things you can poke at right now">
+        <div className={styles.grid}>
+          {profile.demos.map((d) => (
+            <DemoCard key={d.id} demo={d} />
+          ))}
+        </div>
+      </Section>
+
+      <Section id="projects" title="side projects" subtitle="ls projects/">
         <div className={styles.grid}>
           {profile.projects.map((p) => (
             <ProjectCard key={p.id} project={p} />

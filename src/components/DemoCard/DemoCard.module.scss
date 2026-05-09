@@ -1,0 +1,131 @@
+.card {
+  border: 1px solid var(--crt-text-strong);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  background: rgba(94, 255, 138, 0.03);
+  transition: border-color 120ms;
+}
+
+.card:hover,
+.card:focus-within {
+  border-color: var(--crt-text-strong);
+  background: rgba(94, 255, 138, 0.05);
+}
+
+.thumbLink {
+  border: none;
+  display: block;
+}
+
+.thumb {
+  position: relative;
+  aspect-ratio: 16 / 10;
+  background: var(--crt-bg-deep);
+  border: 1px solid var(--crt-text-dim);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.5rem;
+}
+
+.img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+  filter: grayscale(0.6) sepia(0.2) hue-rotate(80deg) saturate(1.6) brightness(0.95) contrast(1.05);
+  transition: filter 200ms;
+}
+
+[data-comfort="1"] .img {
+  filter: none;
+}
+
+.thumb:hover .img {
+  filter: none;
+}
+
+.fallback {
+  font-size: 0.7rem;
+  line-height: 1;
+  color: var(--crt-text-dim);
+  margin: 0;
+}
+
+.live {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  font-size: 0.7rem;
+  color: var(--crt-bg);
+  background: var(--crt-text-strong);
+  padding: 0.15rem 0.4rem;
+  letter-spacing: 0.05em;
+  text-shadow: none;
+  font-weight: 500;
+}
+
+.header {
+  display: flex;
+  align-items: baseline;
+  gap: 0.5rem;
+}
+
+.id {
+  font-family: var(--font-display);
+  color: var(--crt-text-dim);
+  font-size: 1rem;
+}
+
+.name {
+  font-size: 1.5rem;
+  margin: 0;
+  color: var(--crt-text-strong);
+  font-family: var(--font-display);
+}
+
+.tagline {
+  margin: 0;
+  color: var(--crt-text);
+  font-size: 1rem;
+  font-style: italic;
+}
+
+.desc {
+  margin: 0;
+  color: var(--crt-text);
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.stack {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.tag {
+  font-size: 0.78rem;
+  color: var(--crt-text-dim);
+  border: 1px solid var(--crt-text-dim);
+  padding: 0.15rem 0.45rem;
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  align-items: baseline;
+  margin-top: auto;
+  font-size: 0.95rem;
+}
+
+.cta {
+  font-weight: 500;
+}
